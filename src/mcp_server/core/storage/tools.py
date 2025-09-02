@@ -112,22 +112,21 @@ class SessionAwareToolImpl:
         types.Tool(
             name="online_music_list",
             description="获取音乐文件列表, 可以使用`prefix`根据路径过滤, 返回音乐文件的key与url列表。",
-            # description="获取音乐文件列表, 可以使用`prefix`根据路径过滤, 返回音乐文件的key（名称，路径，还可以用于获取下载url）列表。",
             inputSchema={
                 "type": "object",
                 "properties": {
-                    # "max_keys": {
-                    #     "type": "integer",
-                    #     "description": "可选参数，最大返回的文件对象数量，默认为100，最大为500",
-                    # },
-                    # "prefix": {
-                    #     "type": "string",
-                    #     "description": "可选参数，音乐文件名前缀过滤。只返回路径以此前缀开头的音乐文件。",
-                    # },
-                    # "start_after": {
-                    #     "type": "string",
-                    #     "description": "可选参数，分页起始位置。从指定的音乐文件名之后开始列出，用于实现分页浏览。",
-                    # },
+                    "max_keys": {
+                        "type": "integer",
+                        "description": "可选参数，最大返回的文件对象数量，默认为100，最大为500",
+                    },
+                    "prefix": {
+                        "type": "string",
+                        "description": "可选参数，音乐文件名前缀过滤。只返回路径以此前缀开头的音乐文件。",
+                    },
+                    "start_after": {
+                        "type": "string",
+                        "description": "可选参数，分页起始位置。从指定的音乐文件(url)之后开始列出，用于实现分页浏览。",
+                    },
                 },
                 "required": [],
             },
