@@ -13,7 +13,7 @@
 
 ## 工具
 
-1. 音乐文件列表 `list_music`
+1. 音乐文件列表 `online_music_list`
     - 描述: 获取音乐文件列表，可以使用`prefix`根据路径过滤，返回音乐文件的key（名称，路径，还可以用于获取下载url）列表
     - 参数:
       - `max_keys` (optional) 最大返回的文件对象数量，默认为100，最大为500
@@ -22,9 +22,9 @@
     - 输出: 音乐文件列表，包含`Bucket`, `Key`, `Size`等信息
 
 2. 音乐播放链接 `get_music_url`
-    - 描述: 使用通过`list_music`获取到的音乐文件key，获取指定音乐文件的播放URL。可以使用此URL直接在音乐播放器中播放音乐，无需下载完整文件
+    - 描述: 使用通过`online_music_list`获取到的音乐文件key，获取指定音乐文件的播放URL。可以使用此URL直接在音乐播放器中播放音乐，无需下载完整文件
     - 参数:
-      - `key` 音乐对应的key，通过`list_music`获得
+      - `key` 音乐对应的key，通过`online_music_list`获得
       - `expires` (optional) 链接有效期，单位秒，默认3600秒
     - 输出: 音乐文件URL信息，包含`bucket`, `key`, `url`, `size`, `mime_type`等
 

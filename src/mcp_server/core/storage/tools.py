@@ -110,30 +110,30 @@ class SessionAwareToolImpl:
 
     @tools.tool_meta(
         types.Tool(
-            name="list_music",
+            name="online_music_list",
             description="获取音乐文件列表, 可以使用`prefix`根据路径过滤, 返回音乐文件的key与url列表。",
             # description="获取音乐文件列表, 可以使用`prefix`根据路径过滤, 返回音乐文件的key（名称，路径，还可以用于获取下载url）列表。",
             inputSchema={
                 "type": "object",
                 "properties": {
-                    "max_keys": {
-                        "type": "integer",
-                        "description": "最大返回的文件对象数量，默认为100，最大为500",
-                    },
-                    "prefix": {
-                        "type": "string",
-                        "description": "音乐文件名前缀过滤。只返回路径以此前缀开头的音乐文件。",
-                    },
-                    "start_after": {
-                        "type": "string",
-                        "description": "分页起始位置。从指定的音乐文件名之后开始列出，用于实现分页浏览。",
-                    },
+                    # "max_keys": {
+                    #     "type": "integer",
+                    #     "description": "可选参数，最大返回的文件对象数量，默认为100，最大为500",
+                    # },
+                    # "prefix": {
+                    #     "type": "string",
+                    #     "description": "可选参数，音乐文件名前缀过滤。只返回路径以此前缀开头的音乐文件。",
+                    # },
+                    # "start_after": {
+                    #     "type": "string",
+                    #     "description": "可选参数，分页起始位置。从指定的音乐文件名之后开始列出，用于实现分页浏览。",
+                    # },
                 },
                 "required": [],
             },
         )
     )
-    async def list_music(
+    async def online_music_list(
         self, session_id: Optional[str] = None, **kwargs: Any
     ) -> List[types.TextContent]:
         try:
@@ -195,13 +195,13 @@ class SessionAwareToolImpl:
     @tools.tool_meta(
         types.Tool(
             name="get_music_url",
-            description="使用通过`list_music`获取到的音乐文件key，获取指定音乐文件的播放URL。可以使用此URL直接在音乐播放器中播放音乐，无需下载完整文件。",
+            description="使用通过`online_music_list`获取到的音乐文件key，获取指定音乐文件的播放URL。可以使用此URL直接在音乐播放器中播放音乐，无需下载完整文件。",
             inputSchema={
                 "type": "object",
                 "properties": {
                     "key": {
                         "type": "string",
-                        "description": "音乐对应的key，通过`list_music`获得。",
+                        "description": "音乐对应的key，通过`online_music_list`获得。",
                     },
                     # "disable_ssl": {
                     #     "type": "boolean",
@@ -372,7 +372,7 @@ def register_session_aware_tools() -> None:
     # 注册对外提供的工具
     tools.auto_register_tools(
         [
-            impl.list_music,  # 音乐文件列表工具
+            impl.online_music_list,  # 音乐文件列表工具
             # impl.get_music_url,  # 音乐URL生成工具
         ]
     )
